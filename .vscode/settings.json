@@ -1,0 +1,16 @@
+{
+    "python.pythonPath":"C:\\Users\\micha\\.virtualenvs\\figstudios-dev-be\\Scripts\\python.exe",
+    "python.envFile": "${workspaceFolder}/.env",
+    "pythonTestExplorer.testFramework": "pytest",
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "appService.defaultWebAppToDeploy": "None"
+
+}
