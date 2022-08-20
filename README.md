@@ -1,2 +1,2 @@
-# figstudios-dev-be
-Backend For Figstudios
+# Demo
+Demo Backend using Django REST
