@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.urls import path
 
 from health import views as health_views
+from user import views as user_views
 
 
 # Setup the URLs and include login URLs for the browsable API.
@@ -27,6 +28,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Applications Urls
-    path('', health_views.HealthCheckEndpoint.as_view(), name='health'),
     path('health/', health_views.HealthCheckEndpoint.as_view(), name='health'),
+
+    # API
+    path('api/createuser', user_views.CreateUserView.as_view(), name='createuser')
 ]

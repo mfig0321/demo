@@ -42,7 +42,7 @@ class base(Configuration):
         'django.contrib.staticfiles',
 
         # local apps
-
+        'user',
 
         # Third Party
         'corsheaders',
