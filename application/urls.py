@@ -19,6 +19,10 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 
+from drf_spectacular.views import(
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+)
 from health import views as health_views
 from user import views as user_views
 
@@ -31,5 +35,14 @@ urlpatterns = [
     path('health/', health_views.HealthCheckEndpoint.as_view(), name='health'),
 
     # API
-    path('api/createuser', user_views.CreateUserView.as_view(), name='createuser')
+    path(
+        'api/createuser/',
+        user_views.CreateUserView.as_view(),
+        name='createuser'),
+    path(
+        'api/docs/',
+        SpectacularSwaggerView.as_view(url_name='api-schema'),
+        name='api-docs'),
+    path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
+    
 ]

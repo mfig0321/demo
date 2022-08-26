@@ -43,6 +43,7 @@ class base(Configuration):
 
         # local apps
         'user',
+        'drf_spectacular',
 
         # Third Party
         'corsheaders',
@@ -138,6 +139,10 @@ class base(Configuration):
         'http://localhost:3000',
         'http://localhost:8081'
     )
+
+    REST_FRAMEWORK = {
+        'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+    }
 
 
 class dev(base):

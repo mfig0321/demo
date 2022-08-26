@@ -16,6 +16,7 @@ ipython = "*"
 [packages]
 atomicwrites = "*"
 coverage = "*"
+drf-spectacular = "*"
 django = "*"
 djangorestframework = "*"
 django-configurations = "*"
