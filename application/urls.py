@@ -44,5 +44,5 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name='api-schema'),
         name='api-docs'),
     path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
-    
+    path('api/token/', user_views.CreateTokenView.as_view(), name='token'),
 ]

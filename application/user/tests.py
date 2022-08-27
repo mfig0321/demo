@@ -2,7 +2,7 @@
 Tests for user api
 """
 
-from inspect import stack
+
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
@@ -32,7 +32,7 @@ class CreateUserApiTest(TestCase):
             'last_name': 'test_l_name001',
         }
 
-        res = self.client.post('/api/createuser', payload)
+        res = self.client.post('/api/createuser/', payload)
         user = get_user_model().objects.get(email=payload['email'])
         self.assertTrue(user.check_password(payload['password']))
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
@@ -48,7 +48,7 @@ class CreateUserApiTest(TestCase):
         }
 
         create_user(**payload)
-        res = self.client.post('/api/createuser', payload)
+        res = self.client.post('/api/createuser/', payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -60,8 +60,8 @@ class CreateUserApiTest(TestCase):
             'first_name': 'test_f_name001',
             'last_name': 'test_l_name001',
         }
-        
-        res = self.client.post('/api/createuser', payload)
+
+        res = self.client.post('/api/createuser/', payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -73,7 +73,51 @@ class CreateUserApiTest(TestCase):
             'first_name': 'test_f_name001',
             'last_name': 'test_l_name001',
         }
-        
-        res = self.client.post('/api/createuser', payload)
 
+        res = self.client.post('/api/createuser/', payload)
+
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_create_token_for_user(self):
+        """Test generates token for valid credentials."""
+
+        user_details = {
+            'username': 'testuser1',
+            'password': 'testpass001',
+            'email': 'test001@example.com',
+            'first_name': 'test_f_name001',
+            'last_name': 'test_l_name001',
+        }
+
+        create_user(**user_details)
+
+        payload = {
+            'username': user_details['username'],
+            'password': user_details['password'],
+        }
+
+        res = self.client.post('/api/token/', payload)
+
+        self.assertIn('token', res.data)
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+
+    def test_create_token_bad_credentials(self):
+        """Test generates token for valid credentials."""
+
+        user_details = {
+            'username': 'testuser1',
+            'password': 'testpass001',
+            'email': 'test001@example.com',
+            'first_name': 'test_f_name001',
+            'last_name': 'test_l_name001',
+        }
+
+        create_user(**user_details)
+
+        payload = {
+            'email': user_details['email'],
+            'password': 'wrongpass',
+        }
+
+        res = self.client.post('/api/token/', payload)
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)

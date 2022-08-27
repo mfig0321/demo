@@ -57,6 +57,19 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "/api/token",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

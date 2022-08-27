@@ -48,6 +48,7 @@ class base(Configuration):
         # Third Party
         'corsheaders',
         'rest_framework',
+        'rest_framework.authtoken',
     ]
 
     MIDDLEWARE = [
