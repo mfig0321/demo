@@ -18,6 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
     def create(self, validated_data):
+        """Create and return a user."""
         user = UserModel.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
@@ -27,6 +28,19 @@ class UserSerializer(serializers.ModelSerializer):
 
         user.set_password(validated_data['password'])
         user.save()
+
+        user.password = ''
+
+        return user
+
+    def update(self, instance, validated_data):
+        """Update and return user"""
+        password = validated_data.pop('password', None)
+        user = super().update(instance, validated_data)
+
+        if password:
+            user.set_password(password)
+            user.save()
 
         user.password = ''
 
