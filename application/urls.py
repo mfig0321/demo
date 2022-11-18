@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -38,6 +38,7 @@ urlpatterns = [
         'api/createuser/',
         user_views.CreateUserView.as_view(),
         name='createuser'),
+    path('/api/recipe/', include('recipe.urls')),
     path(
         'api/docs/',
         SpectacularSwaggerView.as_view(url_name='api-schema'),

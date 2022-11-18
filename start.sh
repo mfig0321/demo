@@ -4,7 +4,7 @@
 echo "waiting for database to start"
 sleep 30
 echo "--------------------------------"
-printenv
+
 # install dependencies
 cd /code
 pipenv install --dev

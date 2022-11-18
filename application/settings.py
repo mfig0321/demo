@@ -42,6 +42,7 @@ class base(Configuration):
         'django.contrib.staticfiles',
 
         # local apps
+        'recipe',
         'user',
         'drf_spectacular',
 
