@@ -39,6 +39,7 @@ urlpatterns = [
         user_views.CreateUserView.as_view(),
         name='createuser'),
     path('', include('recipe.urls')),
+    path('', include('tags.urls')),
     path(
         'api/docs/',
         SpectacularSwaggerView.as_view(url_name='api-schema'),

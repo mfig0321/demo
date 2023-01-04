@@ -43,6 +43,7 @@ class base(Configuration):
 
         # local apps
         'recipe',
+        'tags',
         'user',
         'drf_spectacular',
 
